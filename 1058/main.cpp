@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <algorithm>
-#define INF 1e9
+
 #define pii pair<int,int>;
 using namespace std;
 int n, ans;
@@ -19,7 +19,7 @@ int main(){
 
     for(int i = 0; i < n; i++)
         for(int j = 0; j < n; j++)
-            dist[i][j] = INF;
+            dist[i][j] = 1e9;
 
     for(int i = 0; i < n; i++){
         string s;
