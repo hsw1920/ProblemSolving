@@ -6,9 +6,25 @@
 //
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    string str1;
+    string str2;
+    cin>>str1;
+    str2=str1;
+    reverse(str1.begin(),str1.end());
+    if(str1==str2){
+        cout<<1<<"\n";
+    }
+    else{
+        cout<<0<<"\n";
+    }
     return 0;
 }

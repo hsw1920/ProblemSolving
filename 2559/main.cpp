@@ -6,9 +6,31 @@
 //
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+using namespace std;
+int n,k; //n일, k일 연속
+int arr[100001];
+int dp[100001];
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin>>n>>k;
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    dp[0]=arr[0];
+    // k일 연속 구간합을 구한다.
+    for(int i=1;i<k;i++){
+        dp[i]=dp[i-1]+arr[i];
+    }
+    int max_num=dp[k-1];
+    
+    // 하루가 지날 때마다 슬라이딩윈도우
+    for(int i=k;i<n;i++){
+        dp[i]=dp[i-1]-arr[i-k]+arr[i];
+        max_num=max(max_num,dp[i]);
+    }
+    cout<<max_num<<"\n";
     return 0;
 }

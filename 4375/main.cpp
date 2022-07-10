@@ -6,9 +6,28 @@
 //
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int n;
+    while(scanf("%d",&n)!=EOF){
+        int cnt=1,ret=1;
+        while(1){
+            if(cnt%n==0){
+                printf("%d\n",ret);
+                break;
+            }
+            else{
+                cnt=(cnt*10)+1;
+                cnt%=n;
+                ret++;
+            }
+        }
+    }
     return 0;
 }
