@@ -6,9 +6,34 @@
 //
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <map>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int n,m;
+    cin>>n>>m;
+    string s;
+    map<string,int>m1;
+    map<int,string>m2;
+    for(int i=0;i<n;i++){
+        cin>>s;
+        m1.insert({s,i+1});
+        m2.insert({i+1,s});
+    }
+    for(int i=0;i<m;i++){
+        cin>>s;
+        //
+        if(atoi(s.c_str())==0){
+            cout<<m1[s]<<"\n";
+        }
+        else{
+            cout<<m2[atoi(s.c_str())]<<"\n";
+        }
+    }
     return 0;
 }
