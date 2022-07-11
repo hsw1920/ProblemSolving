@@ -54,6 +54,9 @@ int main() {
                     if(num[j]=='0'){
                         idx_first=j+1;
                     }
+                    else{
+                        break;
+                    }
                 }
                 string tmp="";
                 for(int j=idx_first;j<num.size();j++){
