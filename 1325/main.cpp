@@ -1,8 +1,8 @@
 //
 //  main.cpp
-//  TEST
+//  1325
 //
-//  Created by 홍승완 on 2022/07/01.
+//  Created by 홍승완 on 2022/07/12.
 //
 
 #include <iostream>
@@ -13,7 +13,8 @@
 using namespace std;
 
 int main() {
-    
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
     
     
     return 0;
