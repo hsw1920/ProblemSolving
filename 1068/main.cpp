@@ -51,7 +51,7 @@ int main() {
     for(int i=0;i<n;i++){
         for(int j=0;j<tree[i].size();j++){
             if(tree[i][j]==k){
-                tree[i].erase(tree[i].begin()+j);
+                tree[i].erase(tree[i].begin()+j); 
                 deleteNode(k);
                 break;
             }

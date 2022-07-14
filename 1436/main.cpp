@@ -21,6 +21,7 @@ int main() {
     string tmp;
     while(x++&&i<n){
         tmp=to_string(x);
+        // tmp.find("666") != string::npos 와 같다.
         if(tmp.find("666") != -1){
             i++;
         }
