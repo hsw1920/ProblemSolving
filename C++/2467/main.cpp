@@ -11,7 +11,7 @@
 using namespace std;
 
 int n;
-long long arr[100001];
+int arr[100001];
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -22,7 +22,7 @@ int main() {
     int s=0;
     int e=n-1;
     int res=2e9;
-    int q,w;
+    int q = 0,w = 0;
     while(s<e){
         int a=arr[s];
         int b=arr[e];
