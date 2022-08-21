@@ -7,8 +7,18 @@
 
 #include <iostream>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+using namespace std;
+
+int n,k=1;
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+
+    cin>>n;
+    while(n!=1){
+        if(n&1)k++;
+        n/=2;
+    }
+    cout<<k<<"\n";
     return 0;
 }
