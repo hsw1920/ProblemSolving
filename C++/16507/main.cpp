@@ -14,12 +14,6 @@
 using namespace std;
 
 int main() {
-    
-    stack<int> st;
-    st.push(3);
-    st.pop();
-    
-    
     ios_base::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
     int maps[1001][1001];
