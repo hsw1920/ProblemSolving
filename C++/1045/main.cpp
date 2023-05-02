@@ -61,7 +61,9 @@ int main() {
         cout<<-1<<"\n";
         return 0;
     }
-    for(int i=0;i<m;i++){
+    //01 02 12
+    int total_cnt=0;
+    for(int i=0;i<edge.size();i++){
         int x=find(edge[i].first);
         int y=find(edge[i].second);
         int a=edge[i].first;
@@ -70,23 +72,26 @@ int main() {
             Union(x,y);
             res[a]++;
             res[b]++;
-            if(cnt<m-1)
-                cnt++;
+            cnt++;
+                
         }else{
             remain.push_back({a,b});
-            if(cnt<m-1)
-                cnt++;
         }
         
+        total_cnt++;
     }
     
-    
-    if(cnt<m-1){
+    if(total_cnt+cnt<m){
+        cout<<-1<<"\n";
+        return 0;
+    }
+    if(total_cnt+cnt<m||cnt<n-1){
         cout<<-1<<"\n";
         return 0;
     }
     else {
         int remain_cnt=m-cnt;
+        
         for(int i=0;i<remain_cnt;i++){
             int a=remain[i].first;
             int b=remain[i].second;
