@@ -80,11 +80,7 @@ int main() {
         
         total_cnt++;
     }
-    
-    if(total_cnt+cnt<m){
-        cout<<-1<<"\n";
-        return 0;
-    }
+
     if(total_cnt+cnt<m||cnt<n-1){
         cout<<-1<<"\n";
         return 0;
