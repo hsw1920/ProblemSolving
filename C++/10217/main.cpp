@@ -25,21 +25,20 @@ void dstra(){
         int curt=pq.top().first;
         int curd=pq.top().second.first;
         int cur=pq.top().second.second;
-        
         pq.pop();
         if(dp[cur][curd]<curt)continue;
         for(int i=0;i<edge[cur].size();i++){
-            int nxtt=edge[cur][i].first;
-            int nxtd=edge[cur][i].second.first;
+            int nxtt=edge[cur][i].first+curt;
+            int nxtd=edge[cur][i].second.first+curd;
             int nxt=edge[cur][i].second.second;
-            if(curt+nxtt<dp[nxt][curd+nxtd] && curd+nxtd<=m){
+            if(nxtd>m)continue;
+            if(nxtt<dp[nxt][nxtd] && nxtd<=m){
                 
-                for(int j=curd+nxtd+1;j<=m;j++){
-                    if(dp[nxt][j]<=curt+nxtt) break;
-                    dp[nxt][j]=curt+nxtt;
+                for(int j=nxtd;j<=m;j++){
+                    if(dp[nxt][j]>nxtt)
+                        dp[nxt][j]=nxtt;
                 }
-                dp[nxt][curd+nxtd]=curt+nxtt;
-                pq.push({curt+nxtt,{curd+nxtd,nxt}});
+                pq.push({nxtt,{nxtd,nxt}});
             }
             
         }
@@ -55,12 +54,12 @@ int main() {
     cin>>t;
     while(t--){
         cin>>n>>m>>k;
-        for(int i=0;i<=n;i++){
+        for(int i=1;i<=n;i++){
+            edge[i].clear();
             for(int j=0;j<=m;j++){
                 dp[i][j]=1e9;
             }
         }
-        for(int i=0;i<=n;i++)edge[i].clear();
     
         for(int i=1;i<=k;i++){
             cin>>u>>v>>c>>d;
@@ -68,7 +67,7 @@ int main() {
         }
         dstra();
         int res=1e9;
-        for(int i=0;i<=m;i++){
+        for(int i=1;i<=m;i++){
             if(dp[n][i]<res)
                 res=dp[n][i];
         }
