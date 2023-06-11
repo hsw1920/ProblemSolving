@@ -8,34 +8,39 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
+#include <cmath>
 
 using namespace std;
-typedef long long ll;
-ll arr[1000007], tree[1000007];
-ll n,m,k;
-ll a,b,c;
-// m은 수의 변경
-// k는 구갓합의 횟수
-// a가 1 -> b번째 수를 c로 바꿈
-// a가 2 -> b번째 수부터 c번째 수까지 합을 구하기
 
+long long n,m,k;
+vector<long long>tree;
+long long a,b,c;
 
-// O(N)으로 시간초과 -> 펜윅트리로 누적합 갱신
-void update(ll i, ll num){
-    while(i<=n){
-        tree[i]+=num;
-        i += (i & -i);
+void makeTree(int i){
+    while(i){
+        tree[i/2]+=tree[i];
+        i--;
     }
 }
 
-ll sum(ll i){
-    ll res = 0;
-    while(i>0){
-        res+=tree[i];
-        i -= (i & -i);
+void changeVal(long long idx, long long c){
+    //b번째 수를 c로 바꿈
+    long long diff=c-tree[idx];
+    while(idx){
+        tree[idx]+=diff;
+        idx/=2;
     }
-    return res;
+}
+
+long long getSum(long long b, long long c){
+    long long psum=0;
+    while(b<=c){
+        if(b%2==1)psum+=tree[b++];
+        if(c%2==0)psum+=tree[c--];
+        b/=2;
+        c/=2;
+    }
+    return psum;
 }
 
 int main() {
@@ -43,25 +48,26 @@ int main() {
     cin.tie(0);cout.tie(0);
 
     cin>>n>>m>>k;
-    for(ll i=1;i<=n;i++){
-        cin>>arr[i];
-        update(i,arr[i]);
-    }
-    while(m+k>0){
-        cin>>a>>b>>c;
-        if(a==1){ // 변경
-            m--;
-            // b번째 수를 c로 바꿈
-            ll dist=c-arr[b];
-            arr[b]=c;
-            update(b,dist);
-
-        } else { // 구간합출력
-            k--;
-            cout<<sum(c)-sum(b-1)<<"\n";
-        }
+    
+    int h=ceil(log2(n));
+    int treeSize=1<<(h+1);
+    int startIdx=treeSize/2;
+    tree.resize(treeSize+1);
+    
+    for(int i=startIdx;i<startIdx+n;i++){
+        cin>>tree[i];
     }
     
-
+    makeTree(treeSize-1);
+    
+    for(int i=0;i<m+k;i++){
+        cin>>a>>b>>c;
+        if(a==1){
+            changeVal(startIdx+b-1,c);
+        }else {
+            cout<<getSum(startIdx+b-1,startIdx+c-1)<<"\n";
+        }
+    }
+ 
     return 0;
 }
