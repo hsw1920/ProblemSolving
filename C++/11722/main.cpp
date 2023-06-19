@@ -1,8 +1,8 @@
 //
 //  main.cpp
-//  2565
+//  11722
 //
-//  Created by 홍승완 on 2022/03/12.
+//  Created by 홍승완 on 2023/06/19.
 //
 
 #include <iostream>
@@ -11,30 +11,34 @@
 
 using namespace std;
 
-int n,dp[101],arr[101];
-vector<pair<int,int>>v;
+int n;
+vector<int>v;
+int dp[1001];
+
+// n<=1000 -> O(N^2) 가능
+// -> LIS -> DP
+
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
     
     cin>>n;
-    v.resize(n);
     for(int i=0;i<n;i++){
-        cin>>v[i].first>>v[i].second;
+        int tmp;cin>>tmp;
+        v.push_back(tmp);
     }
-    sort(v.begin(),v.end());
     int res=0;
     for(int i=0;i<n;i++){
         dp[i]=1;
         for(int j=0;j<i;j++){
-            if(v[i].second>v[j].second){
+            if(v[i]<v[j]){
                 dp[i]=max(dp[i],dp[j]+1);
             }
         }
-        res=max(res,dp[i]);
+        res=max(dp[i],res);
     }
     
-    cout<<n-res<<"\n";
+    cout<<res<<"\n";
     
     return 0;
 }
