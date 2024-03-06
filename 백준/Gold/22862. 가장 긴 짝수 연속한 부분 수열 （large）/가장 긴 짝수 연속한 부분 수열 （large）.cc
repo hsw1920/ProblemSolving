@@ -49,8 +49,12 @@ int main() {
             ed++;
         }
         
-        if(ed-st+1-k <= psum[ed]-psum[st-1]) {
+        if(ed==n && ed-st+1-k <= psum[ed]-psum[st-1]) {
             res=max(res,psum[ed]-psum[st-1]);
+        }
+        
+        if(ed==n){
+            break;
         }
         // 그럼 여기서 ed가 n일때를 처리
         // 할필요가 없을듯? 가장 긴길이니까.
