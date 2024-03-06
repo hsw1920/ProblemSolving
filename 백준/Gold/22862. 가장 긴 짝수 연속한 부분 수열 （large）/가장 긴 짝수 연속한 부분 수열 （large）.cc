@@ -10,6 +10,8 @@
 using namespace std;
 int n,k,val,v[1000001],psum[1000001];
 int main() {
+    cin.tie(0);
+    ios_base::sync_with_stdio(false);
     cin>>n>>k;
     for(int i=1;i<=n;i++){
         cin>>val;
