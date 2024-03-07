@@ -42,14 +42,6 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
     
-    // 일단 눈사람 키 조합 2개를 골라야함. -> 600^2
-    // 600C4? 600 600 600 600 / 24 -> X 조합안됨.
-    // 600^2 -> 눈사람을 만들어놈.
-    // 만들어논 눈사람은 어떤걸로 만들었는지 알 수 있음.
-    // O(N) 36만 ok
-    // 36만개를 확인함. 이때 해당 원소의 디테일을 비교함. 전부 다르면 ok.
-    //
-    
     cin>>n;
     for(int i=0;i<n;i++){
         cin>>H[i];
@@ -65,47 +57,25 @@ int main() {
     int st=0,ed=1;
     
     for(st=0;st<snowman.size();st++){
-        // 눈사람 조합 가능
-        if(isValid(snowman[st], snowman[ed])){
-            // 작으면 st++
-            if(res>hsub(snowman[st], snowman[ed])){
-                res=hsub(snowman[st], snowman[ed]);
-                // ed최대까지만.
-                if(ed<snowman.size()){
-                    ed++;
-                    if(isValid(snowman[st], snowman[ed]) && res>hsub(snowman[st], snowman[ed])){
-                        res=hsub(snowman[st], snowman[ed]);
-                    }
-                }
-            }
-            // 크면
-            else {
-                if(st<ed-1){
-                    continue;
-                } else {
-                    if(ed<snowman.size()){
-                        ed++;
-                        if(isValid(snowman[st], snowman[ed]) && res>hsub(snowman[st], snowman[ed])){
-                            res=hsub(snowman[st], snowman[ed]);
-                        }
-                    }
-                }
-            }
+        // 눈사람 조합 가능하고 최소이면
+        if(isValid(snowman[st], snowman[ed]) && res>hsub(snowman[st], snowman[ed])){
+            res=hsub(snowman[st], snowman[ed]);
+            ed++;
         }
-        // 눈사람 조합 불가능
         else {
             if(st<ed-1){
                 continue;
             }
             else {
                 ed++;
-                if(isValid(snowman[st], snowman[ed]) && res>hsub(snowman[st], snowman[ed])){
-                    res=hsub(snowman[st], snowman[ed]);
-                }
             }
         }
+        
+        if(isValid(snowman[st], snowman[ed]) && res>hsub(snowman[st], snowman[ed])){
+            res=hsub(snowman[st], snowman[ed]);
+        }
     }
-    
+                    
     cout<<res<<"\n";
     return 0;
 }
