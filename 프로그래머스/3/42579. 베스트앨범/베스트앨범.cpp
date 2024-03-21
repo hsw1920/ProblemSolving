@@ -2,20 +2,12 @@
 
 using namespace std;
 
-// 가장 많이 재생된 장르 먼저
-// 장르내 가장 많이 재생
-// 장르내 재생횟수 같은 것 중 id가 낮은 노래 먼저
-
-// 장르내에서 가장 많이 재생된 노래 두 개씩모으기
-
 typedef pair<int,string> pis;
 typedef pair<int,int> pint;
 unordered_map<string,int>genreAll;
 priority_queue<pis,vector<pis>>pq;
 
-priority_queue<pint,vector<pint>>songpq;
-
-bool compare(pair<int,int> a, pair<int,int> b){
+bool compare(pint a, pint b){
     if(a.first==b.first) return a.second<b.second;
     return a.first>b.first;
 }
@@ -36,7 +28,7 @@ vector<int> solution(vector<string> genres, vector<int> plays) {
     }
     
     while(pq.size()){
-        vector<pair<int,int>>ans;
+        vector<pint>ans;
         string genre = pq.top().second;
         // 해당 장르의 모든 노래 구하기
         for(int i=0;i<plays.size();i++){
