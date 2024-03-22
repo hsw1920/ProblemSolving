@@ -29,8 +29,6 @@ void dstra() {
     }
 }
 
-
-
 int solution(int n, vector<vector<int>> edge) {
     int answer = 0;
     
@@ -43,13 +41,8 @@ int solution(int n, vector<vector<int>> edge) {
     }
     
     for(int i=1;i<=n;i++)dist[i]=1e9;
-    
     dstra();
-    
-    int mx=0;
-    for(int i=2;i<=n;i++){
-        mx=max(mx,dist[i]);
-    }
+    int mx=*max_element(dist+2,dist+n);
     for(int i=2;i<=n;i++){
         if(dist[i]==mx) {
             answer++;
