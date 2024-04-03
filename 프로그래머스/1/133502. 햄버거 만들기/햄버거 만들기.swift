@@ -3,8 +3,6 @@ import Foundation
 
 
 func solution(_ ingredient:[Int]) -> Int {
-    
-    // 빵야채고기빵 -> 1231
     var res = 0
     var top = -1 
     var v = [ingredient[0]]
@@ -12,8 +10,6 @@ func solution(_ ingredient:[Int]) -> Int {
     
     if v[0] == 1 { cnt.append(1) } 
     else { cnt.append(0) }
-    
-    if ingredient.count < 4 { return 0 }
     
     for i in 1..<ingredient.count {
         var cur = ingredient[i]
@@ -32,12 +28,8 @@ func solution(_ ingredient:[Int]) -> Int {
             if prev==3 && prevCnt==3 {
                 res += 1
                 
-                var tmp = 3
-                while tmp > 0 {
-                    v.removeLast()
-                    cnt.removeLast()
-                    tmp -= 1
-                }
+                v.removeLast(3)
+                cnt.removeLast(3)
             } 
             else {
                 v.append(cur)
